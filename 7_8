@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int counter = 0;
+	while (counter < 5)
+	{
+    	counter++;
+    	cout << "Looping! ";
+	};
+	cout << "\nCounter: " << counter << endl;
+	return 0;
+}
+////
+Looping! Looping! Looping! Looping! Looping!
+Counter: 5
+

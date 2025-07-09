@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+int menu();
+void DoTaskOne();
+void DoTaskMany(int);
+
+int main()
+{
+	bool exit = false;
+	for (;;)
+	{
+    	int choice = menu();
+    	switch (choice)
+    	{
+    	case (1):
+        	DoTaskOne();
+        	break;
+    	case (2):
+        	DoTaskMany(2);
+        	break;
+    	case (3):
+        	DoTaskMany(3);
+        	break;
+    	case (4):
+        	continue;
+    	case (5):
+        	exit = true;
+        	break;
+    	default:
+        	cout << "Please select again!\n";
+        	break;
+    	}
+    	if (exit)
+        	break;
+	}
+	return 0;
+}
+
+int menu()
+{
+	int choice;
+	cout << "**** Menu ****\n\n";
+	cout << "(1) Choice one.\n";
+	cout << "(2) Choice two.\n";
+	cout << "(3) Choice three.\n";
+	cout << "(4) Redisplay menu.\n";
+	cout << "(5) Quit.\n\n";
+	cin >> choice;
+	return choice;
+}
+
+void DoTaskOne()
+{
+	cout << "Task One!\n";
+}
+
+void DoTaskMany(int which)
+{
+	if (which == 2)
+    	cout << "Task Two!\n";
+	else
+    	cout << "Task Three!\n";
+}
+////
+**** Menu ****
+
+(1) Choice one.
+(2) Choice two.
+(3) Choice three.
+(4) Redisplay menu.
+(5) Quit.
+
+1
+Task One!
+**** Menu ****
+
+(1) Choice one.
+(2) Choice two.
+(3) Choice three.
+(4) Redisplay menu.
+(5) Quit.
+
+3
+Task Three!
+**** Menu ****
+
+(1) Choice one.
+(2) Choice two.
+(3) Choice three.
+(4) Redisplay menu.
+(5) Quit.
+
+5
+
