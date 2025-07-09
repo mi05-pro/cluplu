@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+int fib(int n);
+
+int main()
+{
+	int n, answer;
+
+	cout << "Enter number to find: ";
+	cin >> n;
+	cout << "\n\n";
+
+	answer = fib(n);
+
+	cout << answer << " is the " << n << "the Fibonacci number\n";
+	return 0;
+}
+int fib(int n)
+{
+	cout << "Processing fib(" << n << ")... ";
+	if (n < 3)
+	{
+		cout << "Return 1!\n";
+		return (1);
+	}
+	else
+		cout << "Call fib(" << n - 2 << ") and fib(" << n - 1 << ").\n";
+	return (fib(n - 2) + fib(n - 1));
+}
+////
+Processing fib(6)... Call fib(4) and fib(5).
+Processing fib(4)... Call fib(2) and fib(3).
+Processing fib(2)... Return 1!
+Processing fib(3)... Call fib(1) and fib(2).
+Processing fib(1)... Return 1!
+Processing fib(2)... Return 1!
+Processing fib(5)... Call fib(3) and fib(4).
+Processing fib(3)... Call fib(1) and fib(2).
+Processing fib(1)... Return 1!
+Processing fib(2)... Return 1!
+Processing fib(4)... Call fib(2) and fib(3).
+Processing fib(2)... Return 1!
+Processing fib(3)... Call fib(1) and fib(2).
+Processing fib(1)... Return 1!
+Processing fib(2)... Return 1!
+8 is the 6the Fibonacci number
+
