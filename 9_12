@@ -1,0 +1,84 @@
+#include <iostream>
+
+using namespace std;
+
+class SimpleCat
+{
+public:
+	SimpleCat();
+	SimpleCat(SimpleCat &);
+	~SimpleCat();
+
+	int GetAge() const { return itsAge; }
+	void SetAge(int age) { itsAge = age; }
+
+private:
+	int itsAge;
+};
+
+SimpleCat::SimpleCat()
+{
+	cout << "SimpleCat constructor...\n";
+	itsAge = 1;
+}
+
+SimpleCat::SimpleCat(SimpleCat &)
+{
+	cout << "SimpleCat copy constructor...\n";
+}
+
+SimpleCat::~SimpleCat()
+{
+	cout << "SimpleCat destructor...\n";
+}
+
+SimpleCat FunctuonOne(SimpleCat theCat);
+const SimpleCat &FunctuonTwo(const SimpleCat &theCat);
+
+int main()
+{
+	cout << "Making the cat...\n";
+	SimpleCat Frisky;
+	cout << "Frisky is ";
+	cout << Frisky.GetAge();
+	cout << " years old\n";
+	int age = 5;
+	Frisky.SetAge(age);
+	cout << "Frisky is ";
+	cout << Frisky.GetAge();
+	cout << " years old\n";
+	cout << "Calling FunctuonTwo...\n";
+	FunctuonTwo(Frisky);
+	cout << "Frisky is ";
+	cout << Frisky.GetAge();
+	cout << " years old\n";
+
+	return 0;
+}
+
+SimpleCat FunctuonOne(SimpleCat theCat)
+{
+	cout << "Function One. Returning...\n";
+	return theCat;
+}
+
+const SimpleCat &FunctuonTwo(const SimpleCat &theCat)
+{
+	cout << "Function Two. Returning...\n";
+	cout << "Frisky is now " << theCat.GetAge();
+	cout << " years old\n";
+	// theCat->SetAge(8); // const!
+	return theCat;
+}
+////
+Making the cat...
+SimpleCat constructor...
+Frisky is 1 years old
+Frisky is 5 years old
+Calling FunctuonTwo...
+Function Two. Returning...
+Frisky is now 5 years old
+Frisky is 5 years old
+SimpleCat destructor...
+
+
