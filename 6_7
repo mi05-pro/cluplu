@@ -1,0 +1,99 @@
+// Початок файлу Rect.h
+class Point // зберігає координати х. у
+{
+	// немає конструктора, використовується конструктор за замовчуванням
+public:
+	void SetX(int x) { itsX = x; }
+	void SetY(int y) { itsY = y; }
+	int GetX() const { return itsX; }
+	int GetY() const { return itsY; }
+
+private:
+	int itsX;
+	int itsY;
+}; // кінець оголошення класу Point
+
+class Rectangle
+{
+public:
+	Rectangle(int top, int left, int botom, int right);
+	~Rectangle() {}
+
+	int GetTop() const { return itsTop; }
+	int GetLeft() const { return itsLeft; }
+	int GetBottom() const { return itsBottom; }
+	int GetRight() const { return itsRight; }
+
+	Point GetUpperLeft() const { return itsUpperLeft; }
+	Point GetLowerLeft() const {return itsLowerLeft; }
+ 	Point GetUpperRight() const { return itsUpperRight; }
+	Point GetLowerRight() const { return itsLowerRight; }
+
+	void SetUpperLeft(Point Location) { itsUpperLeft = Location; }
+	void SetLowerLeft(Point Location) { itsLowerLeft = Location; }
+	void SetUpperRight(Point Location) { itsUpperRight = Location; }
+	void SetLowerRight(Point Location) { itsLowerRight = Location; }
+	void SetTop(int top) { itsTop = top; }
+	void Setleft(int left) { itsLeft = left; }
+	void SetBottom(int bottom) { itsBottom = bottom; }
+	void SetRight(int right) { itsRight = right; }
+	int GetArea() const;
+
+private:
+	Point itsUpperLeft;
+	Point itsUpperRight;
+	Point itsLowerLeft;
+	Point itsLowerRight;
+	int itsTop;
+	int itsLeft;
+	int itsBottom;
+	int itsRight;
+};
+// кінець файла Rect.h
+
+// Початок файлу rect.cpp
+#include <iostream>
+#include "Rect.h"
+
+using namespace std;
+
+Rectangle::Rectangle(int top, int left, int bottom, int right)
+{
+	itsTop = top;
+	itsLeft = left;
+	itsBottom = bottom;
+	itsRight = right;
+
+	itsUpperLeft.SetX(left);
+	itsUpperLeft.SetY(top);
+
+	itsUpperRight.SetX(right);
+	itsUpperRight.SetY(top);
+
+	itsLowerLeft.SetX(left);
+	itsLowerLeft.SetY(bottom);
+
+	itsLowerRight.SetX(right);
+	itsLowerRight.SetY(bottom);
+}
+int Rectangle::GetArea() const
+{
+	int Width = itsRight - itsLeft;
+	int Height = itsTop - itsBottom;
+	return (Width * Height);
+}
+
+int main()
+{
+	Rectangle MyRectangle(100, 20, 50, 80);
+
+	int Area = MyRectangle.GetArea();
+	cout << "Area: " << Area << "\n";
+	cout << "Upper Left X Coordinate: ";
+	cout << MyRectangle.GetUpperLeft().GetX();
+	return 0;
+}
+////
+Area: 3000
+Upper Left X Coordinate: 20
+
