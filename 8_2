@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+typedef unsigned short int USHORT;
+int main()
+{
+	USHORT myAge; // змінна
+	USHORT *pAge = 0; // вказівник
+	myAge = 5;
+	cout << "myAge: " << myAge << "\n";
+	pAge = &myAge; // заносимо в pAge адресу myAge
+	cout << "*pAge: " << *pAge << "\n\n";
+	cout << "*pAge = 7\n";
+	*pAge = 7; // присвоюємо myAge значення 7
+	cout << "*pAge: " << *pAge << "\n";
+	cout << "myAge: " << myAge << "\n\n";
+	cout << "myAge = 9\n";
+	myAge = 9;
+	cout << "myAge: " << myAge << "\n";
+	cout << "*pAge: " << *pAge << "\n";
+
+	return 0;
+}
+////
+Результат
+myAge: 5
+*pAge: 5
+
+*pAge = 7
+*pAge: 7
+myAge: 7
+
+myAge = 9
+myAge: 9
+*pAge: 9
+

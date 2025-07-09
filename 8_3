@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	unsigned short int myAge = 5, yourAge = 10;
+	unsigned short int *pAge = &myAge;
+	cout << "myAge: \t\t" << myAge << "\t\tyourAge: \t" << yourAge << "\n";
+	cout << "&myAge: \t" << &myAge << "\t&yourAge: \t" << &yourAge << "\n";
+	cout << "pAge: \t\t" << pAge << "\n";
+	cout << "*pAge: \t\t" << *pAge << "\n";
+	pAge = &yourAge;
+	cout << "myAge: \t\t" << myAge << "\t\tyourAge: \t" << yourAge << "\n";
+	cout << "&myAge: \t" << &myAge << "\t&yourAge: \t" << &yourAge << "\n";
+	cout << "pAge: \t\t" << pAge << "\n";
+	cout << "*pAge: \t\t" << *pAge << "\n";
+	cout << "&pAge: \t\t" << &pAge << "\n";
+
+	return 0;
+}
+////
+myAge:    	 5   	 yourAge:     10
+&myAge:     0x7ff7bfefef4a    &yourAge:     0x7ff7bfefef48
+pAge:    	 0x7ff7bfefef4a
+*pAge:    	 5
+myAge:    	 5   	 yourAge:     10
+&myAge:     0x7ff7bfefef4a    &yourAge:     0x7ff7bfefef48
+pAge:    	 0x7ff7bfefef48
+*pAge:    	 10
+&pAge:    	 0x7ff7bfefef40
+
