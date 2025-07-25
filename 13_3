@@ -1,0 +1,107 @@
+#include <iostream>
+
+using namespace std;
+
+enum TYPE
+{
+	HORSE,
+	PEGASUS
+};
+
+class Horse
+{
+public:
+	Horse() { cout << "Horse constructor... "; }
+	virtual ~Horse() { cout << "Horse destructor... "; }
+	virtual void Whinny() const { cout << "Whinny!... "; }
+
+private:
+	int itsAge;
+};
+
+class Bird
+{
+public:
+	Bird() { cout << "Bird constructor... "; }
+	virtual ~Bird() { cout << "Bird destructor... "; }
+	virtual void Chirp() const { cout << "Chirp... "; }
+	virtual void Fly() const
+	{
+    	cout << "I can fly! I can fly! I can fly! ";
+	}
+
+private:
+	int itsWeight;
+};
+
+class Pegasus : public Horse, public Bird
+{
+public:
+	Pegasus() { cout << "Pegasus constructor... "; }
+	~Pegasus() { cout << "Pegasus destructor... "; }
+	void Chirp() const { Whinny(); }
+};
+
+const int MagicNumber = 2;
+
+int main()
+{
+	Horse *Ranch[MagicNumber];
+	Bird *Aviary[MagicNumber];
+	Horse *pHorse;
+	Bird *pBird;
+	int choice, i;
+	for (i = 0; i < MagicNumber; i++)
+	{
+    	cout << "\n(1)Horse (2)Pegasus: ";
+    	cin >> choice;
+    	if (choice == 2)
+        	pHorse = new Pegasus;
+    	else
+        	pHorse = new Horse;
+    	Ranch[i] = pHorse;
+	}
+	for (i = 0; i < MagicNumber; i++)
+	{
+    	cout << "\n(1)Bird (2)Pegasus: ";
+    	cin >> choice;
+    	if (choice == 2)
+        	pBird = new Pegasus;
+    	else
+        	pBird = new Bird;
+    	Aviary[i] = pBird;
+	}
+	cout << "\n";
+	for (i = 0; i < MagicNumber; i++)
+	{
+    	cout << "\nRanch[" << i << "]: ";
+    	Ranch[i]->Whinny();
+    	delete Ranch[i];
+	}
+	for (i = 0; i < MagicNumber; i++)
+	{
+    	cout << "\nAviary[" << i << "]: ";
+    	Aviary[i]->Chirp();
+    	Aviary[i]->Fly();
+    	delete Aviary[i];
+	}
+	cout << "\n";
+
+	return 0;
+}
+
+Результат
+(1)Horse (2)Pegasus: 1
+Horse constructor...
+(1)Horse (2)Pegasus: 2
+Horse constructor... Bird constructor... Pegasus constructor...
+(1)Bird (2)Pegasus: 1
+Bird constructor...
+(1)Bird (2)Pegasus: 2
+Horse constructor... Bird constructor... Pegasus constructor...
+
+Ranch[0]: Whinny!... Horse destructor...
+Ranch[1]: Whinny!... Pegasus destructor... Bird destructor... Horse destructor...
+Aviary[0]: Chirp... I can fly! I can fly! I can fly! Bird destructor...
+Aviary[1]: Whinny!... I can fly! I can fly! I can fly! Pegasus destructor... Bird destructor... Horse destructor...
+
