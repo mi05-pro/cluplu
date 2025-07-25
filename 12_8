@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	char buffer[80];
+	cout << "Enter the string: ";
+	cin >> buffer;
+	cout << "Here is the buffer: " << buffer << endl;
+
+	return 0;
+}
+////
+Enter the string: Hello World
+Here is the buffer: Hello
+

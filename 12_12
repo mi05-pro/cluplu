@@ -1,0 +1,185 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class String
+{
+public:
+	// Конструктори
+	String();
+	String(const char *const);
+	String(const String &);
+	~String();
+
+	// Перевантаження операторів
+	char &operator[](unsigned short offset);
+	char operator[](unsigned short offset) const;
+	String operator+(const String &);
+	void operator+=(const String &);
+	String &operator=(const String &);
+
+	// Основні методи доступу
+	unsigned short GetLen() const { return itsLen; }
+	const char *GetString() const { return itsString; }
+
+private:
+	String(unsigned short); // закритий конструктор
+	char *itsString;
+	unsigned short itsLen;
+};
+
+// Конструктор, заданий по замовчуванню, створює рядок нулювої довжини
+String::String()
+{
+	itsString = new char[1];
+	itsString[0] = '\0';
+	itsLen = 0;
+}
+
+// Закритий (допоміжний) конструктор
+// використовується тільки методами класу для створення
+// рядків потрібної довжини з нулювим наповненням
+String::String(unsigned short len)
+{
+	itsString = new char[len + 1];
+	for (unsigned short i = 0; i <= len; i++)
+    	itsString[i] = '\0';
+	itsLen = len;
+}
+
+// Перетворення масиву символів в рядок
+String::String(const char *const cString)
+{
+	itsLen = strlen(cString);
+	itsString = new char[itsLen + 1];
+	for (unsigned short i = 0; i < itsLen; i++)
+    	itsString[i] = cString[i];
+	itsString[itsLen] = '\0';
+}
+
+// Конструктор-копії
+String::String(const String &rhs)
+{
+	itsLen = rhs.GetLen();
+	itsString = new char[itsLen + 1];
+	for (unsigned short i = 0; i < itsLen; i++)
+    	itsString[i] = rhs[i];
+	itsString[itsLen] = '\0';
+}
+
+// Деструктор для звільнення памяті
+String::~String()
+{
+	delete[] itsString;
+	itsLen = 0;
+}
+
+// Оператор присвоєння звільнює память
+// і копіює туди string і size
+String &String::operator=(const String &rhs)
+{
+	if (this == &rhs)
+    	return *this;
+	delete[] itsString;
+	itsLen = rhs.GetLen();
+	itsString = new char[itsLen + 1];
+	for (unsigned short i = 0; i < itsLen; i++)
+    	itsString[i] = rhs[i];
+	itsString[itsLen] = '\0';
+	return *this;
+}
+
+// Неконстантний оператор індексування
+// повертає посилання на символ так, що його
+// можна змінити!
+char &String::operator[](unsigned short offset)
+{
+	if (offset > itsLen)
+    	return itsString[itsLen - 1];
+	else
+    	return itsString[offset];
+}
+
+// константний оператор індексування для використання
+// з константними обєктами
+char String::operator[](unsigned short offset) const
+{
+	if (offset > itsLen)
+    	return itsString[itsLen - 1];
+	else
+    	return itsString[offset];
+}
+
+// Створення нової стрічки хляхом добавленням
+// поточного рядка до rhs
+String String::operator+(const String &rhs)
+{
+	unsigned short totalLen = itsLen + rhs.GetLen();
+	String temp(totalLen);
+	unsigned short i;
+	for (i = 0; i < itsLen; i++)
+    	temp[i] = itsString[i];
+	for (unsigned short j = 0; j < rhs.GetLen(); j++, i++)
+    	temp[i] = rhs[j];
+	temp[totalLen] = '\0';
+	return temp;
+}
+
+// змінити поточний рядок і повернути void
+void String::operator+=(const String &rhs)
+{
+	unsigned short rhsLen = rhs.GetLen();
+	unsigned short totalLen = itsLen + rhsLen;
+	String temp(totalLen);
+	unsigned short i;
+	for (i = 0; i < itsLen; i++)
+    	temp[i] = itsString[i];
+	for (unsigned short j = 0; j < rhs.GetLen(); j++, i++)
+    	temp[i] = rhs[i - itsLen];
+	temp[totalLen] = '\0';
+	*this = temp;
+}
+
+int main()
+{
+	String s1("initial test");
+	cout << "s1: \t" << s1.GetString() << endl;
+
+	char const *temp = "Hello world";
+	s1 = temp;
+	cout << "s1: \t" << s1.GetString() << endl;
+
+	char tempTwo[20];
+	strcpy(tempTwo, ": nice to be here!");
+	s1 += tempTwo;
+	cout << "tempTwo: \t" << tempTwo << endl;
+	cout << "s1: \t" << s1.GetString() << endl;
+
+	cout << "s1[6]: \t" << s1[6] << endl;
+	s1[6] = 'W';
+	cout << "s1: \t" << s1.GetString() << endl;
+
+	cout << "s1[999]: \t" << s1[999] << endl;
+
+	String s2(" Another string");
+	String s3;
+	s3 = s1 + s2;
+	cout << "s3: \t" << s3.GetString() << endl;
+
+	String s4;
+	s4 = "Why does this work?";
+	cout << "s4: \t" << s4.GetString() << endl;
+	return 0;
+}
+////
+s1:     initial test
+s1:     Hello world
+tempTwo:     : nice to be here!
+s1:     Hello world: nice to be here!
+s1[6]:     w
+s1:     Hello World: nice to be here!
+s1[999]:     !
+s3:     Hello World: nice to be here! Another string
+s4:     Why does this work?
+

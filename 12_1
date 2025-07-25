@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int myArray[5];
+	int i;
+	for (i = 0; i < 5; i++)
+	{
+    	cout << "Value for myArray[" << i << "]: ";
+    	cin >> myArray[i];
+	}
+	for (i = 0; i < 5; i++)
+    	cout << i << ": " << myArray[i] << endl;
+
+	return 0;
+}
+////
+Value for myArray[0]: 3
+Value for myArray[1]: 6
+Value for myArray[2]: 9
+Value for myArray[3]: 12
+Value for myArray[4]: 15
+0: 3
+1: 6
+2: 9
+3: 12
+4: 15
+
