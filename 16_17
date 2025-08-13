@@ -1,0 +1,70 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    char fileName[80];
+    char buffer[255];
+    cout << "Please re-enter the file name: ";
+    cin >> fileName;
+    ifstream fin(fileName);
+    if (fin) // файл уже існує?
+    {
+        cout << "Current file contents:\n";
+        char ch;
+        while (fin.get(ch))
+            cout << ch;
+        cout << "\n***End of file contents.***\n";
+    }
+    fin.close();
+
+    cout << "\nOpening " << fileName << " in append mode...\n";
+
+    ofstream fout(fileName, ios::app);
+    if (!fout)
+    {
+        cout << "Unable to open " << fileName << " for appending. \n";
+        return (1);
+    }
+    cout << "\nEnter text for the file: ";
+    cin.ignore(1, '\n');
+    cin.getline(buffer, 255);
+    fout << buffer << "\n";
+    fout.close();
+
+    fin.open(fileName); // перевизначення існуючого обєкта fin!
+    if (!fin)
+    {
+        cout << "Unable to open " << fileName << " for reading.\n";
+        return (1);
+    }
+    cout << "\nHere's the contents of the file:\n";
+    char ch;
+    while (fin.get(ch))
+        cout << ch;
+    cout << "\n***End of file contents.***\n";
+    fin.close();
+
+    return 0;
+}
+////
+Please re-enter the file name: test1
+Current file contents:
+This line written directly to the file...
+This text is written to the file!
+
+***End of file contents.***
+
+Opening test1 in append mode...
+
+Enter text for the file: More text for the file!
+
+Here's the contents of the file:
+This line written directly to the file...
+This text is written to the file!
+More text for the file!
+
+***End of file contents.***
+

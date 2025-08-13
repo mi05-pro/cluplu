@@ -1,0 +1,43 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int myInt;
+    long myLong;
+    double myDouble;
+    float myFloat;
+    unsigned int myUnsigned;
+    cout << "int: ";
+    cin >> myInt;
+    cout << "Long: ";
+    cin >> myLong;
+    cout << "Double: ";
+    cin >> myDouble;
+    cout << "Float: ";
+    cin >> myFloat;
+    cout << "Unsigned: ";
+    cin >> myUnsigned;
+    cout << "\n\nInt:\t\t" << myInt << endl;
+    cout << "Long:\t\t" << myLong << endl;
+    cout << "Double:\t\t" << myDouble << endl;
+    cout << "Float:\t\t" << myFloat << endl;
+    cout << "Unsigned:\t" << myUnsigned << endl;
+
+    return 0;
+}
+/////
+int: 2
+Long: 70000
+Double: 987654321
+Float: 3.33
+Unsigned: 25
+
+
+Int:            2
+Long:           70000
+Double:         9.87654e+08
+Float:          3.33
+Unsigned:       25
+

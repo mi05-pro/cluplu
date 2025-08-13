@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int myInt;
+    long myLong;
+    double myDouble;
+    float myFloat;
+    unsigned int myUnsigned;
+    char myWord[50];
+
+    cout << "int: ";
+    cin >> myInt;
+    cout << "Long: ";
+    cin >> myLong;
+    cout << "Double: ";
+    cin >> myDouble;
+    cout << "Float: ";
+    cin >> myFloat;
+    cout << "Word: ";
+    cin >> myWord;
+    cout << "Unsigned: ";
+    cin >> myUnsigned;
+
+    cout << "\n\nInt:\t\t" << myInt << endl;
+    cout << "Long:\t\t" << myLong << endl;
+    cout << "Double:\t\t" << myDouble << endl;
+    cout << "Float:\t\t" << myFloat << endl;
+    cout << "Word:\t\t" << myWord << endl;
+    cout << "Unsigned:\t" << myUnsigned << Lendl;
+    cout << "\n\nInt, Long, Double, Float, Word, Unsigned: ";
+    cin >> myInt >> myLong >> myDouble;
+    cin >> myFloat >> myWord >> myUnsigned;
+    cout << "\n\nInt:\t\t" << myInt << endl;
+    cout << "Long:\t\t" << myLong << endl;
+    cout << "Double:\t\t " << myDouble << endl;
+    cout << "Float:\t\t" << myFloat << endl;
+    cout << "Word:\t\t" << myWord << endl;
+    cout << "Unsigned:\t" << myUnsigned << endl;
+
+    return 0;
+}
+///////////
+int: 2
+Long: 30303
+Double: 393939397834
+Float: 3.33
+Word: Hello
+Unsigned: 85
+
+
+Int:            2
+Long:           30303
+Double:         3.93939e+11
+Float:          3.33
+Word:           Hello
+Unsigned:       85
+
+
+Int, Long, Double, Float, Word, Unsigned: 3 304938 393847473 6.66 bye -2
+
+
+Int:            3
+Long:           304938
+Double:          3.93847e+08
+Float:          6.66
+Word:           bye
+Unsigned:       4294967294
+
