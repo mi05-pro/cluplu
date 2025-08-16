@@ -1,0 +1,64 @@
+#include <iostream>
+
+using namespace std;
+
+namespace Window
+{
+    const int MAX_X = 30;
+    const int MAX_Y = 40;
+    class Pane
+    {
+    public:
+        Pane();
+        ~Pane();
+        void size(int x, int y);
+        void move(int x, int y);
+        void show();
+
+    private:
+        static int cnt;
+        int x;
+        int y;
+    };
+}
+
+int Window::Pane::cnt = 0;
+Window::Pane::Pane() : x(0), y(0) {}
+Window::Pane::~Pane() {}
+
+void Window::Pane::size(int x, int y)
+{
+    if (x < Window::MAX_X && x > 0)
+        Pane::x = x;
+
+    if (y < Window::MAX_Y && y > 0)
+        Pane::y = y;
+}
+
+void Window::Pane::move(int x, int y)
+{
+    if (x < Window::MAX_X && x > 0)
+        Pane::x = x;
+
+    if (y < Window::MAX_Y && y > 0)
+        Pane::y = y;
+}
+
+void Window::Pane::show()
+{
+    std::cout << "x: " << Pane::x;
+    std::cout << " y: " << Pane::y << std::endl;
+}
+
+int main()
+{
+    Window::Pane pane;
+
+    pane.move(20, 20);
+    pane.show();
+
+    return 0;
+}
+////
+x: 20 y: 20
+
