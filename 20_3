@@ -1,0 +1,148 @@
+#include <iostream>
+using namespace std;
+
+const int DefaultSize = 10;
+
+class Array
+{
+public:
+	// конструктори
+	Array(int itsSize = DefaultSize);
+	Array(const Array &rhs);
+	~Array() { delete[] pType; }
+
+	// оператори
+	Array &operator=(const Array &);
+	int &operator[](int offSet);
+	const int &operator[](int offSet) const;
+
+	// методи доступу
+	int GetitsSize() const { return itsSize; }
+
+	// функція-друг
+	friend ostream &operator<<(ostream &, const Array &);
+
+	// Визначаємо клас винятків
+	class xBoundary
+	{
+	};
+	class xSize
+	{
+	};
+	class xTooBig : public xSize
+	{
+	};
+	class xTooSmall : public xSize
+	{
+	};
+	class xZero : public xTooSmall
+	{
+	};
+	class xNegative : public xSize
+	{
+	};
+
+private:
+	int *pType;
+	int itsSize;
+};
+
+Array::Array(int size) : itsSize(size)
+{
+	if (size == 0)
+		throw xZero();
+	if (size > 30000)
+		throw xTooBig();
+	if (size < 1)
+		throw xNegative();
+	if (size < 10)
+		throw xTooSmall();
+
+	pType = new int[size];
+	for (int i = 0; i < size; i++)
+		pType[i] = 0;
+}
+
+Array &Array::operator=(const Array &rhs)
+{
+	if (this == &rhs)
+		return *this;
+	delete[] pType;
+	itsSize = rhs.GetitsSize();
+	pType = new int[itsSize];
+	for (int i = 0; i < itsSize; i++)
+		pType[i] = rhs[i];
+	return *this;
+}
+
+Array::Array(const Array &rhs)
+{
+	itsSize = rhs.GetitsSize();
+	pType = new int[itsSize];
+	for (int i = 0; i < itsSize; i++)
+		pType[i] = rhs[i];
+}
+
+int &Array::operator[](int offSet)
+{
+	int size = GetitsSize();
+	if (offSet >= 0 && offSet < GetitsSize())
+		return pType[offSet];
+	throw xBoundary();
+}
+
+const int &Array::operator[](int offSet) const
+{
+	int mysize = GetitsSize();
+	if (offSet >= 0 && offSet < GetitsSize())
+		return pType[offSet];
+	throw xBoundary();
+}
+
+ostream &operator<<(ostream &output, const Array &theArray)
+{
+	for (int i = 0; i < theArray.GetitsSize(); i++)
+		output << "[" << i << "]" << theArray[i] << endl;
+	return output;
+}
+
+int main()
+{
+	try
+	{
+		Array intArray(0);
+		for (int j = 0; j < 100; j++)
+		{
+			intArray[j] = j;
+			cout << "intArray[" << j << "] okay...\n";
+		}
+	}
+	catch (Array::xBoundary)
+	{
+		cout << "Unable to process your input!\n";
+	}
+	catch (Array::xTooBig)
+	{
+		cout << "This array is too big...\n";
+	}
+	catch (Array::xTooSmall)
+	{
+		cout << "This array is too small...\n";
+	}
+	catch (Array::xZero)
+	{
+		cout << "You asked for an array";
+		cout << " of zero objects!\n";
+	}
+	catch (...)
+	{
+		cout << "Something went wrong!\n";
+	}
+
+	cout << "Done.\n";
+	return 0;
+}
+////
+This array is too small...
+Done.
+
