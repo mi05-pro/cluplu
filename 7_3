@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	unsigned short small;
+	unsigned long large;
+	const unsigned short MAXSMALL = 65355;
+
+	cout << "Enter a smal number: ";
+	cin >> small;
+	cout << "Enter a large number: ";
+	cin >> large;
+
+	cout << "small: " << small << "...";
+
+	// на кожній ітерації перевіряються три умови
+	while (small < large && large > 0 && small < MAXSMALL)
+	{
+    	if (small % 5000 == 0) // після кожних 50 рядків виводиться крапка
+        	cout << ".";
+    	small++;
+    	large -= 2;
+	}
+	cout << "\nSmall: " << small << " Large: " << large << endl;
+	return 0;
+}
+////
+Enter a smal number: 2
+Enter a large number: 100000
+small: 2.........
+Small: 33335 Large: 33334
+

@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int fib(int position);
+
+int main()
+{
+	int answer, position;
+	cout << "Which position? ";
+	cin >> position;
+	cout << "\n";
+
+	answer = fib(position);
+	cout << answer << " is the ";
+	cout << position << " Fibonacci number.\n";
+	return 0;
+}
+
+int fib(int n)
+{
+	int minusTwo = 1, minusOne = 1, answer = 2;
+	if (n < 3)
+    	return 1;
+	for (n -= 3; n; n--)
+	{
+    	minusTwo = minusOne;
+    	minusOne = answer;
+    	answer = minusOne + minusTwo;
+	}
+
+	return answer;
+}
+////
+Which position? 4
+3 is the 4 Fibonacci number.
+
+Which position? 5
+5 is the 5 Fibonacci number.
+
+Which position? 20
+6765 is the 20 Fibonacci number.
+

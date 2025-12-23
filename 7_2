@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int counter = 0; // ініціалізація лічильника
+
+	while (counter < 5) // перевірка початкового значення
+	{
+		counter++; // тіло циклу
+		cout << "counter: " << counter << "\n";
+	}
+
+	cout << "Complete. Counter: " << counter << "\n";
+	return 0;
+}
+////
+counter: 1
+counter: 2
+counter: 3
+counter: 4
+counter: 5
+Complete. Counter: 5
+
