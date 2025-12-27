@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	enum Days
+	{
+		Sunday,
+		Monday,
+		Tuesday,
+		Wednesday,
+		Thursday,
+		Friday,
+		Saturday
+	};
+	int choice;
+	cout << "Enter a day (0-6): ";
+	cin >> choice;
+	if (choice == Sunday || choice == Saturday)
+		cout << "\nYou're already off on weekends!\n";
+	else
+		cout << "\nOkay, I'll put in the vacation day,\n";
+	return 0;
+}
+////
+Enter a day (0-6): 6
+
+You're already off on weekends!
+////
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	enum class Days
+	{
+		Sunday,
+		Monday,
+		Tuesday,
+		Wednesday,
+		Thursday,
+		Friday,
+		Saturday
+	};
+	int choice;
+	cout << "Enter a day (0-6): ";
+	cin >> choice;
+	if (choice == static_cast<int>(Days::Sunday) || choice == static_cast<int>(Days::Saturday))
+		cout << "\nYou're already off on weekends!\n";
+	else
+		cout << "\nOkay, I'll put in the vacation day,\n";
+	return 0;
+}
+
