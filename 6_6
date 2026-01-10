@@ -1,0 +1,59 @@
+// Оголошення класу САТ у файлі САТ.h
+#include <iostream>
+using namespace std;
+class Cat
+{
+public:
+	Cat(int initialAge);
+	~Cat();
+	int GetAge() const { return itsAge; };
+	void SetAge(int age) { itsAge = age; };
+	void Meow() const { cout << "Meow.\n"; };
+
+private:
+	int itsAge;
+};
+// Оголошення класу САТ у файлі САТ.cpp
+#include "CAT.h"
+
+Cat::Cat(int initialAge)
+{
+	itsAge = initialAge;
+	cout << "Cat constructor\n";
+}
+
+Cat::~Cat()
+{
+	cout << "Cat destructor\n";
+}
+// Оголошення класу САТ у файлі MAIN.cpp
+// Приклад визначення методів у
+// оголошенні класу
+
+#include <iostream> // для об'єкта cout
+#include "CAT.h"
+using namespace std;
+
+// Створюємо віртуальну кішку, встановлюємо її вік, дозволяємо
+// їй м'явкнути, повідомляємо її вік, потім знову "нявкаем",
+
+int main()
+{
+	Cat Frisky(5);
+	Frisky.Meow();
+	cout << "Frisky is a cat who is ";
+	cout << Frisky.GetAge() << " years old.\n";
+	Frisky.Meow();
+	Frisky.SetAge(7);
+	cout << "Now Frisky is ";
+	cout << Frisky.GetAge() << " years old.\n";
+	return 0;
+}
+////
+Cat constructor
+Meow.
+Frisky is a cat who is 5 years old.
+Meow.
+Now Frisky is 7 years old.
+Cat destructor
+

@@ -1,0 +1,16 @@
+class Cat
+{
+public:
+	unsigned int GetAge();
+	void SetAge(unsigned int Age);
+
+	unsigned int GetWeight();
+	void SetWeight(unsigned int Weight);
+
+	void Meow();
+
+private:
+	unsigned int itsAge;
+	unsigned int itsWeight;
+};
+

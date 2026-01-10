@@ -1,0 +1,73 @@
+// Приклад визначення методів у
+// оголошенні класу
+
+#include <iostream> // для об'єкта cout
+using namespace std;
+class Cat // Початок оголошення класу 7
+{
+public:					  // Початок розділу public
+	Cat(int initialAge);  // конструктор
+	~Cat();				  // деструктор
+	int GetAge();		  // метод доступу
+	void SetAge(int age); // метод доступу
+	void Meow();		  // Звичайний метод
+private:				  // початок розділу private
+	int itsAge;			  // змінна-член
+};
+
+// конструктор класу Cat
+Cat::Cat(int initialAge)
+{
+	itsAge = initialAge;
+}
+
+Cat::~Cat() // деструктор що не робить жодних дій
+{
+}
+
+// GetAge, відкрита функція доступу,
+// повертає значення змінної-члена itsAge
+int Cat::GetAge()
+{
+	return itsAge;
+}
+// Визначення відкритої функції доступу SetAge
+// Функція SetAge
+// ініціює змінну-член itsAge
+void Cat::SetAge(int age)
+{
+	// встановлюємо змінну-член itsAge рівною
+	// значенню, переданому за допомогою параметра пекло
+	itsAge = age;
+}
+
+// Визначення методу Meow
+// Повертає void
+// параметрів немає
+// використовується для виведення на екран тексту "Meow"
+void Cat::Meow()
+{
+	cout << "Meow.\n";
+}
+
+// Створюємо віртуальну кішку, встановлюємо її вік, дозволяємо
+// їй мяукнути, повідомляємо її вік, потім знову "мяукаем",
+
+int main()
+{
+	Cat Frisky(5);
+	Frisky.Meow();
+	cout << "Frisky is a cat who is ";
+	cout << Frisky.GetAge() << " years old.\n";
+	Frisky.Meow();
+	Frisky.SetAge(7);
+	cout << "Now Frisky is ";
+	cout << Frisky.GetAge() << " years old.\n";
+	return 0;
+}
+////
+Meow.
+Frisky is a cat who is 5 years old.
+Meow.
+Now Frisky is 7 years old.
+
