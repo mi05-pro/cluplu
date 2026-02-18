@@ -1,0 +1,65 @@
+#include <iostream>
+
+using namespace std;
+
+class Horse
+{
+public:
+	void Gallop() { cout << "Galloping...\n"; }
+	virtual void Fly() { cout << "Horses can't fly.\n"; }
+
+private:
+	int itsAge;
+};
+
+class Pegasus : public Horse
+{
+public:
+	virtual void Fly() { cout << "I can fly! I can fly! I can fly!\n"; }
+};
+
+const int NumberHourses = 5;
+
+int main()
+{
+	Horse *Ranch[NumberHourses];
+	Horse *pHorse;
+	int choice, i;
+	for (i = 0; i < NumberHourses; i++)
+	{
+    	cout << "(1)Horse (2)Pegasus: ";
+    	cin >> choice;
+    	if (choice == 2)
+        	pHorse = new Pegasus;
+    	else
+        	pHorse = new Horse;
+    	Ranch[i] = pHorse;
+	}
+	cout << "\n";
+	for (i = 0; i < NumberHourses; i++)
+	{
+    	Pegasus *pPeg = dynamic_cast<Pegasus *>(Ranch[i]);
+    	if (pPeg)
+        	pPeg->Fly();
+    	else
+        	cout << "Just a horse\n";
+
+    	delete Ranch[i];
+	}
+
+	return 0;
+}
+
+Результат
+(1)Horse (2)Pegasus: 1
+(1)Horse (2)Pegasus: 2    
+(1)Horse (2)Pegasus: 1
+(1)Horse (2)Pegasus: 2
+(1)Horse (2)Pegasus: 1
+
+Just a horse
+I can fly! I can fly! I can fly!
+Just a horse
+I can fly! I can fly! I can fly!
+Just a horse
+

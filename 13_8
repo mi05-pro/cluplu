@@ -1,0 +1,26 @@
+class Shape
+{
+public:
+    Shape() {}
+    virtual ~Shape() {}
+    virtual long GetArea() = 0;
+    virtual long GetPerim() = 0;
+    virtual void Draw() = 0;
+};
+
+Результат
+(1)Circle (2)Rectangle (3)Square (0)Quit: 2
+x x x x
+x x x x
+x x x x
+x x x x
+
+(1)Circle (2)Rectangle (3)Square (0)Quit: 3
+x x x x x
+x x x x x
+x x x x x
+x x x x x
+x x x x x
+
+(1)Circle (2)Rectangle (3)Square (0)Quit: 0
+
