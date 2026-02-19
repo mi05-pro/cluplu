@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+class SimpleCat
+{
+public:
+	SimpleCat(int age, int weight);
+	SimpleCat(SimpleCat &);
+	~SimpleCat();
+
+	int GetAge() const { return itsAge; }
+	int GetWeight() const { return itsWeight;}
+
+private:
+	int itsAge;
+	int itsWeight;
+};
+
+SimpleCat::SimpleCat(int age, int weight)
+{
+	cout << "SimpleCat constructor...\n";
+	itsAge = age;
+	itsWeight = weight;
+}
+
+SimpleCat::SimpleCat(SimpleCat &)
+{
+	cout << "SimpleCat copy constructor...\n";
+}
+
+SimpleCat::~SimpleCat()
+{
+	cout << "SimpleCat destructor...\n";
+}
+
+SimpleCat &TheFunctuon();
+
+int main()
+{
+	SimpleCat &rCat = TheFunctuon();
+	int age = rCat.GetAge();
+	cout << "rCat " << age << " years old!\n";
+	cout << "&rCat " << &rCat << endl;
+	// Як звільнити цюпамять?
+	SimpleCat *pCat = &rCat;
+	delete pCat;
+	// На що тепер посилається rCat?
+
+	return 0;
+}
+
+SimpleCat FunctuonOne(SimpleCat theCat)
+{
+	cout << "Function One. Returning...\n";
+	return theCat;
+}
+
+SimpleCat &TheFunctuon()
+{
+	SimpleCat *pFrisky = new SimpleCat(5, 9);
+	cout << "pFrisky: " << pFrisky << endl;
+	return *pFrisky;
+}
+////
+SimpleCat constructor...
+pFrisky: 0x7fb9d9a04080
+rCat 5 years old!
+&rCat 0x7fb9d9a04080
+SimpleCat destructor…
+

@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std;
+
+class SimpleCat
+{
+public:
+	SimpleCat();
+	SimpleCat(SimpleCat &);
+	~SimpleCat();
+};
+
+SimpleCat::SimpleCat()
+{
+	cout << "SimpleCat constructor...\n";
+}
+
+SimpleCat::SimpleCat(SimpleCat &)
+{
+	cout << "SimpleCat copy constructor...\n";
+}
+
+SimpleCat::~SimpleCat()
+{
+	cout << "SimpleCat destructor...\n";
+}
+
+SimpleCat FunctuonOne(SimpleCat theCat);
+SimpleCat *FunctuonTwo(SimpleCat *theCat);
+
+int main()
+{
+	cout << "Making the cat...\n";
+	SimpleCat Frisky;
+	cout << "Calling FunctuonOne...\n";
+	FunctuonOne(Frisky);
+	cout << "Calling FunctuonTwo...\n";
+	FunctuonTwo(&Frisky);
+
+	return 0;
+}
+
+SimpleCat FunctuonOne(SimpleCat theCat)
+{
+	cout << "Function One. Returning...\n";
+	return theCat;
+}
+
+SimpleCat *FunctuonTwo(SimpleCat *theCat)
+{
+	cout << "Function Two. Returning...\n";
+	return theCat;
+}
+////
+Making the cat...
+SimpleCat constructor...
+Calling FunctuonOne...
+SimpleCat copy constructor...
+Function One. Returning...
+SimpleCat copy constructor...
+SimpleCat destructor...
+SimpleCat destructor...
+Calling FunctuonTwo...
+Function Two. Returning...
+SimpleCat destructor...
+
