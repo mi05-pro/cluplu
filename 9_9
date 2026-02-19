@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+typedef unsigned short USHORT;
+enum class ERROR_CODE { SUCCESS, ERROR };
+
+ERROR_CODE Factor(USHORT n, USHORT &rSquared, USHORT &rCubed);
+
+int main()
+{
+	USHORT number, squared, cubed;
+	ERROR_CODE result;
+
+	cout << "Enter a number (0 - 200): ";
+	cin >> number;
+
+	result = Factor(number, squared, cubed);
+
+	if (result == ERROR_CODE::SUCCESS)
+	{
+    	cout << "number: " << number << "\n";
+    	cout << "squared: " << squared << "\n";
+    	cout << "cubed: " << cubed << "\n";
+	}
+	else
+    	cout << "Error encountered!\n";
+
+	return 0;
+}
+
+ERROR_CODE Factor(USHORT n, USHORT &rSquared, USHORT &rCubed)
+{
+	if (n > 20)
+    	return ERROR_CODE::ERROR;
+	else
+	{
+    	rSquared = n * n;
+    	rCubed = n * n * n;
+    	return ERROR_CODE::SUCCESS;
+	}
+}
+////
+Enter a number (0 - 200): 3
+number: 3
+squared: 9
+cubed: 27
+

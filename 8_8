@@ -1,0 +1,45 @@
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+public:
+	Rectangle();
+	~Rectangle();
+	void SetLength(int length) { this->itsLength = length; }
+	int GetLength() const { return this->itsLength; }
+
+	void SetWidth(int width) { itsWidth = width; }
+	int GetWidth() const { return tsWidth; }
+
+private:
+	int itsLength;
+	int itsWidth;
+};
+
+Rectangle::Rectangle()
+{
+	itsWidth = 5;
+	itsLength = 10;
+}
+
+Rectangle::~Rectangle() {}
+
+int main()
+{
+	Rectangle theRect;
+	cout << "theRect is " << theRect.GetLength() << " meters long.\n";
+	cout << "theRect is " << theRect.GetWidth() << " meters wide.\n";
+	theRect.SetLength(20);
+	theRect.SetWidth(10);
+	cout << "theRect is " << theRect.GetLength() << " meters long.\n";
+	cout << "theRect is " << theRect.GetWidth() << " meters wide.\n";
+	return 0;
+}
+////
+theRect is 10 meters long.
+theRect is 5 meters wide.
+theRect is 20 meters long.
+theRect is 10 meters wide.
+

@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	unsigned short shortVar = 5;
+	unsigned long longVar = 65535;
+	long sVar = -65535;
+
+	cout << "shortVar: \t" << shortVar;
+	cout << "\tAddress of shortVar: \t";
+	cout << &shortVar << "\n";
+
+	cout << "longVar: \t" << longVar;
+	cout << "\tAddress of longVar: \t";
+	cout << &longVar << "\n";
+
+	cout << "sVar: \t\t" << sVar;
+	cout << "\tAddress of sVar: \t";
+	cout << &sVar << "\n";
+
+	return 0;
+}
+////
+shortVar:     5    Address of shortVar:     0x7ff7bfefef6a
+longVar:     65535    Address of longVar:     0x7ff7bfefef60
+sVar:    	 -65535    Address of sVar:     0x7ff7bfefef58
+

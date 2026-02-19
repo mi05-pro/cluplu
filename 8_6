@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+class SimpleCat
+{
+public:
+	SimpleCat() { itsAge = 2; }
+	~SimpleCat();
+
+	int GetAge() { return itsAge; }
+	void SetAge(int age) { itsAge = age; }
+
+private:
+	int itsAge;
+};
+
+int main()
+{
+	SimpleCat *Frisky = new SimpleCat;
+	cout << "Frisky " << Frisky->GetAge() << " years old.\n";
+	Frisky->SetAge(5);
+	cout << "Frisky " << Frisky->GetAge() << " years old.\n";
+	return 0;
+}
+////
+Frisky 2 years old.
+Frisky 5 years old.
+

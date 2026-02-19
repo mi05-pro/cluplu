@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+bool GetWord(char *string, char *word, int &wordoffset);
+
+int main()
+{
+	const int bufferSize = 255;
+	char buffer[bufferSize + 1]; // змінна для зберігання усього рядка
+	char word[bufferSize + 1];   // змінна для зберігання слова
+	int wordOffset = 0;      	// починаємо з першого слова
+	cout << "Enter a string: ";
+	cin.getline(buffer, bufferSize);
+	while (GetWord(buffer, word, wordOffset))
+    	cout << "Got this word: " << word << endl;
+
+	return 0;
+}
+
+// Функція виділення слова з рядка символів.
+bool GetWord(char *string, char *word, int &wordOffset)
+{
+	if (!string[wordOffset]) // Визначає кінець рядка?
+    	return false;
+
+	char *p1, *p2;
+	p1 = p2 = string + wordOffset; // вказівник на наступне слово
+
+	// видаляємо великі пробіли
+	for (int i = 0; i < (int)strlen(p1) && !isalnum(p1[0]); i++)
+    	p1++;
+
+	// Перевірка наявності слова
+	if (!isalnum(p1[0]))
+    	return false;
+
+	// вказівник p1 показує початок наступного слова
+	// як і р2
+	p2 = p1;
+
+	// перемістемо р2 на кінець слова
+	while (isalnum(p2[0]))
+    	p2++;
+	// р2 вказує на кінець слова
+	// а р1-початок
+	// різниця вказівників показує довжину слова
+	int len = int(p2 - p1);
+
+	// Копіюємо слово в буфер
+	strncpy(word, p1, len);
+
+	// і додаємо символ розриву терміни
+	word[len] = '\0';
+
+	// шукаємо початок наступного слова
+	for (int i = int(p2 - string); i < (int)strlen(string) && !isalnum(p2[0]); i++)
+    	p2++;
+
+	wordOffset = int(p2 - string);
+
+	return true;
+}
+////
+Enter a string: this code first appeared in C++ Repport
+Got this word: this
+Got this word: code
+Got this word: first
+Got this word: appeared
+Got this word: in
+Got this word: C
+Got this word: Repport
+

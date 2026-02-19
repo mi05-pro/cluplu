@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int intOne;
+	int &rSomeRef = intOne;
+
+	intOne = 5;
+	cout << "intOne: " << intOne << endl;
+	cout << "rSomeRef: " << rSomeRef << endl;
+	cout << "&intOne: " << &intOne << endl;
+	cout << "&rSomeRef: " << &rSomeRef << endl;
+
+	int intTwo = 8;
+	rSomeRef = intTwo; // не те що ви думаєте!
+	cout << "\nintOne: " << intOne << endl;
+	cout << "intTwo: " << intTwo << endl;
+	cout << "rSomeRef: " << rSomeRef << endl;
+	cout << "&intOne: " << &intOne << endl;
+	cout << "&intTwo: " << &intTwo << endl;
+	cout << "&rSomeRef: " << &rSomeRef << endl;
+
+	return 0;
+}
+////
+intOne: 5
+rSomeRef: 5
+&intOne: 0x7ff7bfefef08
+&rSomeRef: 0x7ff7bfefef08
+
+intOne: 8
+intTwo: 8
+rSomeRef: 8
+&intOne: 0x7ff7bfefef08
+&intTwo: 0x7ff7bfefeefc
+&rSomeRef: 0x7ff7bfefef08
+
