@@ -1,0 +1,65 @@
+#include <iostream>
+
+using namespace std;
+
+class Counter
+{
+public:
+	Counter();
+	Counter(int val);
+	~Counter() {}
+	int GetItsVal() const { return itsVal; }
+	void SetItsVal(int x) { itsVal = x; }
+	void Increment() { ++itsVal; }
+	const Counter& operator++();
+	const Counter operator++(int);
+
+private:
+	int itsVal;
+};
+
+Counter::Counter() : itsVal(0)
+{
+}
+
+Counter::Counter(int val) : itsVal(val)
+{
+}
+
+const Counter& Counter::operator++()
+{
+	++itsVal;
+	return *this;
+}
+
+const Counter Counter::operator++(int)
+{
+	Counter temp(*this);
+	++itsVal;
+	return temp;
+}
+
+int main()
+{
+	Counter i;
+	cout << "The value of i is: " << i.GetItsVal() << endl;
+	i.Increment();
+	cout << "The value of i is: " << i.GetItsVal() << endl;
+	++i;
+	cout << "The value of i is: " << i.GetItsVal() << endl;
+	Counter a = ++i;
+	cout << "The value of a is: " << a.GetItsVal();
+	cout << " and i: " << i.GetItsVal() << endl;
+	a = i++;
+	cout << "The value of a is: " << a.GetItsVal();
+	cout << " and i: " << i.GetItsVal() << endl;
+
+	return 0;
+}
+////
+The value of i is: 0
+The value of i is: 1
+The value of i is: 2
+The value of a is: 3 and i: 3
+The value of a is: 3 and i: 4
+

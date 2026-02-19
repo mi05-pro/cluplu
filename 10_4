@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+public:
+	Rectangle();
+	Rectangle(int width, int height);
+	~Rectangle() {}
+	int GetWidth() const { return itsWidth; }
+	int GetHeight() const { return itsHeight; }
+
+private:
+	int itsWidth;
+	int itsHeight;
+};
+
+Rectangle::Rectangle() :
+itsWidth(5),
+itsHeight(10)
+{
+}
+
+Rectangle::Rectangle(int width, int height)
+{
+	itsWidth = width;
+	itsHeight = height;
+}
+
+int main()
+{
+	Rectangle Rect1;
+	cout << "Rect1 width: " << Rect1.GetWidth() << endl;
+	cout << "Rect1 height: " << Rect1.GetHeight() << endl;
+
+	int width, height;
+	cout << "\nEnter a width: ";
+	cin >> width;
+	cout << "Enter a height: ";
+	cin >> height;
+
+	Rectangle Rect2(width, height);
+	cout << "\nRect2 width: " << Rect2.GetWidth() << endl;
+	cout << "Rect2 height: " << Rect2.GetHeight() << endl;
+
+	return 0;
+}
+
