@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+void myFunction(); // прототип
+
+int x = 5, y = 7; // глобальні змінні
+int main()
+{
+	cout << "x from main: " << x << "\n";
+	cout << "y from main: " << y << "\n\n";
+	myFunction();
+	cout << "Back from myFunction!\n\n";
+	cout << "x from main: " << x << "\n";
+	cout << "y from main: " << y << "\n";
+	return 0;
+}
+
+void myFunction()
+{
+	int y = 10;
+	cout << "x from myFunction: " << x << "\n";
+	cout << "y from myfunction: " << y << "\n\n";
+}
+////
+x from main: 5
+y from main: 7
+
+x from myFunction: 5
+y from myfunction: 10
+
+Back from myFunction!
+
+x from main: 5
+y from main: 7
+

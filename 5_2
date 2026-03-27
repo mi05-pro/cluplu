@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+float Convert(float);
+
+int main()
+{
+	float TempFer;
+	float TempCel;
+
+	cout << "Please enter the temperature in Fahrenheit: ";
+	cin >> TempFer;
+	TempCel = Convert(TempFer);
+	cout << "\nHere's the temperature in Celsius: ";
+	cout << TempCel << endl;
+
+	return 0;
+}
+
+float Convert(float TempFer)
+{
+	float TempCel;
+	TempCel = ((TempFer - 32) * 5) / 9;
+	return TempCel;
+}
+////
+Please enter the temperature in Fahrenheit: 212
+
+Here's the temperature in Celsius: 100
+
+
+
+Please enter the temperature in Fahrenheit: 32
+
+Here's the temperature in Celsius: 0
+
+
+
+Please enter the temperature in Fahrenheit: 100
+
+Here's the temperature in Celsius: 37.7778
+
