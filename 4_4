@@ -1,0 +1,37 @@
+// Лістинг 4.4. Демонструє використання
+// префіксних і постфіксних операторів
+// інкримента і декримента
+#include <iostream>
+using namespace std;
+int main()
+{
+	int myAge = 39; // ініціалізуємо дві цілочисленні змінні
+	int yourAge = 39;
+	cout << "I am: " << myAge << " years old.\n";
+	cout << "You are: " << yourAge << " years old\n";
+	myAge++;   // Постфіксний інкремент
+	++yourAge; // Префіксний інкремент
+	cout << "One year passes...\n";
+	cout << "I am: " << myAge << " years old.\n";
+	cout << "You are: " << yourAge << " years old\n";
+	cout << "Another year passes\n";
+	cout << "I am: " << myAge++ << " years old.\n";
+	cout << "You are: " << ++yourAge << " years old\n";
+	cout << "Let's print it again.\n";
+	cout << "I am: " << myAge << " years old.\n";
+	cout << "You are: " << yourAge << " years old\n";
+	return 0;
+}
+////
+I am: 39 years old.
+You are: 39 years old
+One year passes...
+I am: 40 years old.
+You are: 40 years old
+Another year passes
+I am: 40 years old.
+You are: 41 years old
+Let's print it again.
+I am: 41 years old.
+You are: 41 years old
+

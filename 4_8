@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int x;
+	cout << "Enter a number less than 10 or greater than 100: ";
+
+	cin >> x;
+	cout << "\n";
+
+	if (x >= 10)
+		if (x > 100)
+			cout << "More than 10, Thanks! In";
+		else // до якого оператора if відноситься цей оператор
+			cout << "Les than 10, Thanks! \n";
+
+	return 0;
+}
+////
+Enter a number less than 10 or greater than 100: 20
+
+Les than 10, Thanks!
+
